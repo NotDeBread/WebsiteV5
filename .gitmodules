@@ -1,0 +1,27 @@
+[submodule "WinnieAccumulator"]
+	path = WinnieAccumulator
+	url = https://github.com/NotDeBread/WinnieAccumulator.git
+[submodule "Eddie-Accumulator"]
+	path = Eddie-Accumulator
+	url = https://github.com/NotDeBread/Eddie-Accumulator.git
+[submodule "RandomSentenceGenerator"]
+	path = RandomSentenceGenerator
+	url = https://github.com/NotDeBread/RandomSentenceGenerator.git
+[submodule "BigNumber"]
+	path = BigNumber
+	url = https://github.com/NotDeBread/BigNumber.git
+[submodule "PixelGenerator"]
+	path = PixelGenerator
+	url = https://github.com/NotDeBread/PixelGenerator.git
+[submodule "PressTheButton"]
+	path = PressTheButton
+	url = https://github.com/NotDeBread/PressTheButton.git
+[submodule "NotJSAB"]
+	path = NotJSAB
+	url = https://github.com/NotDeBread/NotJSAB.git
+[submodule "MathGame"]
+	path = MathGame
+	url = https://github.com/NotDeBread/MathGame.git
+[submodule "Wishlist"]
+	path = Wishlist
+	url = https://github.com/NotDeBread/Wishlist.git
