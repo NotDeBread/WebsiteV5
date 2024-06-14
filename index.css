@@ -299,6 +299,7 @@ button {
   
 #headerBG {
   filter: brightness(50%) blur(5px);
+  width: 100%;
 }
 
 #main {
