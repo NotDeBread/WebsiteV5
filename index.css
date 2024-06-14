@@ -535,6 +535,10 @@ button {
   #innerGallery img {
     max-width: 100%;
   }
+
+  .mobileIncompatible {
+    display: none;
+  }
 }
 
 #version {
