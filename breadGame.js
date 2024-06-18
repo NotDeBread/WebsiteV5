@@ -189,9 +189,9 @@ function start() {
         gameActive = true
         player.sliding = false
         player.points = 0
-
-        doge('breadGameBread').style.width = '32px'
     
+        doge('breadGameBread').style.width = '32px'
+        doge('breadGameBread').style.height = '64px'
         playerD.src = 'media/breadGame/bread.gif'
     
         doge('breadGameOverlay').style.pointerEvents = 'none'
