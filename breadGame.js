@@ -87,7 +87,7 @@ setInterval(() => {
     
             doge('breadGameBread').src = 'media/breadGame/breadDead.png'
             doge('breadGameBread').style.width = '64px'
-        }
+            doge('breadGameBread').style.height = '32px'        }
     })
 
     //floor movement
@@ -112,6 +112,7 @@ document.addEventListener('keydown', ev => {
     
             doge('breadGameBread').src = 'media/breadGame/breadSlide.png'
             doge('breadGameBread').style.width = '64px'
+            doge('breadGameBread').style.height = '32px'
         }
     }
 })
@@ -124,6 +125,7 @@ document.addEventListener('keyup', ev => {
     
             doge('breadGameBread').src = 'media/breadGame/bread.gif'
             doge('breadGameBread').style.width = '32px'
+            doge('breadGameBread').style.height = '64px'
         }
     }
 })
