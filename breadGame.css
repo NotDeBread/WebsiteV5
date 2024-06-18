@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiny5&display=swap');
+
+#breadGameContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    background-color: black;
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity ease-in-out 500ms;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    font-family: "Tiny5", sans-serif;
+}
+
+#breadGameOverlay, #breadGameDeath {
+    position: absolute;
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+    z-index: 100;
+    transition: scale ease-in 1s;
+}
+
+#breadGameOverlay button, #breadGameDeath button {
+    font-family: "Tiny5", sans-serif;
+}
+
+#breadGamePoints {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 2em;
+}
+
+#breadGame {
+    width: 100dvw;
+    height: 500px;
+    overflow-x: hidden;
+    transition: scale cubic-bezier(.5,0,.5,1) 1s, translate cubic-bezier(.5,0,.5,1) 1s;
+}
+
+#breadGameSky {
+    height: calc(100% - 8px);
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+#breadGameBread {
+    width: 32px;
+    position: absolute;
+    bottom: 0px;
+    left: 400px;
+    z-index: 2;
+}
+
+@keyframes cloudMove {
+    to {
+        left: -160px;
+    }
+}
+
+#breadGameBG {
+    position: absolute;
+    width: 100%;
+    bottom: 50px;
+    height: 50px;
+    background: url(media/breadGame/bg.png);
+    background-size: auto 50px;
+    animation: groundMove 20s linear infinite forwards;
+    opacity: 0.5;
+}
+
+#breadGameFloor {
+    width: 100%;
+    height: 8px;
+    background: url(media/breadGame/floor.png);
+    background-size: auto 8px;
+}

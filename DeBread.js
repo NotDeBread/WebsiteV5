@@ -1,4 +1,5 @@
-const soundPool = {};
+const soundPool = {}
+const intervals = {}
 
 const DeBread = {
     /**
@@ -193,34 +194,20 @@ const DeBread = {
     * @param speed The speed to play the sound at.
     */
     playSound(sound, volume = 1, speed = 1) {
-        if(data.settings.sfx && audios < 15) {
-            if(!soundPool[sound]) {
-                soundPool[sound] = new Audio(sound)
-            }
-            const audio = soundPool[sound]
-            audio.volume = volume
-            audio.playbackRate = speed
+        if(!soundPool[sound]) {
+            soundPool[sound] = new Audio(sound)
+        }
+        const audio = soundPool[sound]
+        audio.volume = volume
+        audio.playbackRate = speed
 
-            if(audio.paused) {
-                audio.play()
-                audios++
-                doge('dbSounds').innerText = `Sounds: ${audios}/${audioLimit}`
-                doge('dbSounds').style.color = `hsl(0deg, 100%, ${100 - ((audios - (audioLimit / 2)) / audioLimit) * 100}%)`
-            } else{
-                const audioClone = audio.cloneNode()
-                audioClone.volume = volume
-                audioClone.playbackRate = speed
-                audioClone.play()
-                audios++
-                doge('dbSounds').innerText = `Sounds: ${audios}/${audioLimit}`
-                doge('dbSounds').style.color = `hsl(0deg, 100%, ${100 - ((audios - (audioLimit / 2)) / audioLimit) * 100}%)`
-            }
-
-            setTimeout(() => {
-                audios--
-                doge('dbSounds').innerText = `Sounds: ${audios}/${audioLimit}`
-                doge('dbSounds').style.color = `hsl(0deg, 100%, ${100 - ((audios - (audioLimit / 2)) / audioLimit) * 100}%)`
-            }, audio.duration * 1000);
+        if(audio.paused) {
+            audio.play()
+        } else{
+            const audioClone = audio.cloneNode()
+            audioClone.volume = volume
+            audioClone.playbackRate = speed
+            audioClone.play()
         }
     },
 
@@ -403,6 +390,80 @@ const DeBread = {
             console.log(`Dialogue file path has been set to '${path}'`)
         }
     },
+
+        /**
+     * Creates an interval.
+     * @param id A unique string for naming the interval.
+     * @param run What to run in each callback.
+     * @param delay The delay in milliseconds between each callback. Can also be a string for changing variables.
+     * @param repeat How many times the interval runs before being deleted.
+     */
+    createInterval(id, run, delay, repeat = Infinity) {
+        if(!intervals[id]) {
+            intervals[id] = {
+                lastRan: performance.now(),
+                timePaused: undefined,
+                timesRepeated: 0,
+                paused: false,
+                fun: () => {run()},
+                delay: delay.toString(),
+                callback: () => {
+                    intervals[id].timeout = setTimeout(() => {
+                        run()
+                        intervals[id].lastRan = performance.now()
+                        intervals[id].timesRepeated++
+                        if(intervals[id].timesRepeated < repeat) {
+                            intervals[id].callback()
+                        } else {
+                            DeBread.deleteInterval(id)
+                        }
+                    }, eval(delay.toString()));
+                }
+            }
+
+            intervals[id].callback()
+        } else {
+            throw new Error(`Interval ${id} is already created. Use DeBread.deleteInterval(${id}) to remove it.`)
+        }
+
+        return intervals[id]
+    },
+
+    /**
+     * Pause/Resumes an interval using its ID.
+     * @param id The ID of an existing interval.
+     */
+    pauseInterval(id) {
+        if(intervals[id]) {
+            let interval = intervals[id]
+            if(interval.paused) {
+                setTimeout(() => {
+                    interval.fun()
+                    interval.callback()
+                }, interval.delay - (interval.timePaused - interval.lastRan));
+            } else {
+                clearTimeout(interval.timeout)
+                interval.timePaused = performance.now()
+                console.log(interval.timePaused)
+            }
+            interval.paused = !interval.paused
+        } else {
+            throw new Error(`Couldn't find an interval using the ID of ${id}, try creating one using DeBread.createInterval()`)
+        }
+    },
+
+    /**
+     * Deletes an interval using its ID.
+     * @param id The ID of an existing interval.
+     */
+    deleteInterval(id) {
+        if(intervals[id]) {
+            intervals[id] = undefined
+            clearTimeout(intervals[id].timout)
+        } else {
+            throw new Error(`Couldn't find an interval using the ID of ${id}, try creating one using DeBread.createInterval()`)
+        }
+    }
 }
 
 let windowFocused = true
@@ -416,6 +477,18 @@ window.onblur = () => {windowFocused = false}
 */
 function doge(id) {
     return document.getElementById(id)
+}
+
+function isColliding(div1, div2) {
+    const rect1 = div1.getBoundingClientRect()
+    const rect2 = div2.getBoundingClientRect()
+  
+    return !(
+      rect1.right <= rect2.left ||
+      rect1.left >= rect2.right ||
+      rect1.bottom <= rect2.top ||
+      rect1.top >= rect2.bottom
+    )
 }
 
 //-----Credit: @zeanzarzin-----//

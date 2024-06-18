@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="breadGame.css">
     <title>DeBread's Space</title>
 </head>
 
@@ -22,6 +23,28 @@
     <span id="cursorText"></span>
     <div id="cursor"></div>
     <div id="realCursor"></div>
+
+    <div id="breadGameContainer">
+        <div id="breadGameOverlay">
+            <span style="font-size: 2em;">Bread Game</span>
+            <span onclick="start()">SPACE to jump, S/DOWN ARROW to slide</span>
+            <button onclick="start()">PLAY</button>
+            <button onclick="closeBG()">CLOSE</button>
+        </div>
+        <div id="breadGameDeath" style="opacity: 0; pointer-events: none;">
+            <span style="font-size: 2em;">you dead :(</span>
+            <button onclick="start()">TRY AGAIN</button>
+            <button onclick="closeBG()">CLOSE</button>
+        </div>
+        <span id="breadGamePoints">00000000</span>
+        <div id="breadGame">
+            <div id="breadGameSky">
+                <img src="media/breadGame/bread.gif" id="breadGameBread">
+                <div id="breadGameBG"></div>
+            </div>
+            <div id="breadGameFloor"></div>
+        </div>
+    </div>
 
     <div id="galleryContainer">
         <div id="gallery">
@@ -85,6 +108,7 @@
                         <button style="width: 150px;" onclick="openGallery('pixel')">Pixel Art</button>
                         <button style="width: 150px;" onclick="openGallery('vector')">Vector Art</button>
                         <button style="width: 150px;" onclick="openGallery('goober')">Goober Art</button>
+                        <button style="width: 150px;" onclick="openGallery('misc')">Misc Art</button>
                         <!-- <button style="width: 150px;" onclick="openGallery('notebook')">Notebook Doodles</button> -->
                         <!-- <button style="width: 100px;">Misc</button> -->
                     </div>
@@ -161,6 +185,15 @@
                 <span style="font-size: 1.25em; font-weight: 700">News</span><br>
                 <div id="newsContainer">
                     <div class="news">
+                        <span ignoreCursor="true">DeBread.space v0.2 released</span>
+                        <span ignoreCursor="true">
+                            Fixed a few things and added a secret 'Bread Game' (Click the guy 10 times to unlock). Visit the <a
+                                href="https://github.com/NotDeBread/WebsiteV5/commits/master/" target="_blank">GitHub page</a> for the
+                            full changelog
+                        </span>
+                        <em>June 18th, 2024</em>
+                    </div>
+                    <div class="news">
                         <span ignoreCursor="true">DeBread.space moves away from DeBreadOS</span>
                         <span ignoreCursor="true">
                             After a few months after DeBreadOS' release, I've decided it wasn't the greatest way of showing all of my content. So I made this
@@ -173,12 +206,13 @@
         </div>
     </div>
 
-    <span id="version">v0.01 h4</span>
+    <span id="version">v0.02</span>
 
 
     <script src="DeBread.js"></script>
     <script src="cursor.js"></script>
     <script src="script.js"></script>
+    <script src="breadGame.js"></script>
 </body>
 
 </html>

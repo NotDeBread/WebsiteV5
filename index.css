@@ -77,6 +77,7 @@ button {
   font-size: 0.75em;
   z-index: 9999;
   background-color: rgb(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
 }
 
 #cursor {
@@ -258,7 +259,7 @@ button {
 
 #galleryFooter {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 10px);
   bottom: 0;
   border-top: 2px solid white;
   height: 25px;

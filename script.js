@@ -9,23 +9,11 @@ const art = {
             date: 'May 16th, 2024'
         }
     ],
-    notebook: [
+    misc: [
         {
-            url: 'Bear.jpg',
-            date: 'March 1st, 2024'
-        },
-        {
-            url: 'cubanPerson.jpg',
-            date: 'March 1st, 2024'
-        },
-        {
-            url: 'Hank0.jpg',
-            date: 'March 1st, 2024'
-        },
-        {
-            url: 'Hank1.png',
-            date: 'July 21st, 2023'
-        },
+            url: 'Floaty.png',
+            date: 'June 18th, 2024'
+        }
     ],
     pixel: [
         {
@@ -88,6 +76,7 @@ const art = {
 const artTitles = {
     goober: 'Goober Art',
     notebook: 'Notebook Doodles',
+    misc: 'Misc Art',
     pixel: 'Pixel Art',
     vector: 'Vector Art',
 }
@@ -109,7 +98,6 @@ const gallery = doge('gallery')
 const innerGallery = doge('innerGallery')
 const galleryContainer = doge('galleryContainer')
 function openGallery(group) {
-    console.log(group)
     innerGallery.innerHTML = ''
     closeMediaView()
     gallery.style.animation = 'galleryOpen 250ms cubic-bezier(0,1,.5,1) 1 forwards'
@@ -293,6 +281,61 @@ function guyClick() {
     requestAnimationFrame(() => {
         doge('guyCounter').style.animation = 'pulse 500ms cubic-bezier(0,1,.5,1) 1 forwards'
     })
+
+    if(doge('guyCounter').innerText === '10') {
+        DeBread.playSound('media/explosion.mp3', 0.05)
+
+        const button = document.createElement('button')
+        button.innerText = 'Bread Game'
+        button.style.position = 'absolute'
+        button.style.left = '75px'
+        button.style.top = '75px'
+        button.style.zIndex = '5'
+        setTimeout(() => {
+            document.body.append(button)
+        }, 10);
+
+        button.onmouseenter = () => {
+            if(!contextMenuOpen) {
+                const rect = button.getBoundingClientRect()
+                mouseTarget = () => {return [rect.left + button.offsetWidth / 2, rect.top + button.offsetHeight / 2]}
+                cursor.style.borderRadius = '0'
+                cursor.style.width = button.offsetWidth + 'px'
+                cursor.style.height = button.offsetHeight + 'px'
+                cursorHovering = button
+            }
+        }
+        button.onmouseleave = () => {
+            if(!contextMenuOpen) {
+                mouseTarget = () => {return [mouse[0], mouse[1]]}
+                cursor.style.borderRadius = '50%'
+                cursor.style.width = '15px'
+                cursor.style.height = '15px'
+                cursorHovering = undefined
+            }
+        }
+        button.onclick = () => {
+            doge('breadGameContainer').style.pointerEvents = 'unset'
+            doge('breadGameContainer').style.opacity = 1
+
+            doge('breadGameOverlay').style.pointerEvents = 'unset'
+            doge('breadGameOverlay').style.scale = 1
+        
+        }
+
+        const explosion = document.createElement('img')
+        explosion.style.position = 'absolute'
+        explosion.style.left = '25px'
+        explosion.style.top = '0'
+        explosion.style.zIndex = '6'
+        explosion.src = 'media/explosion.gif'
+        document.body.append(explosion)
+
+        setTimeout(() => {
+            explosion.remove()
+        }, 750);
+
+    }
 }
 
 doge('guy').onmouseenter = () => {
