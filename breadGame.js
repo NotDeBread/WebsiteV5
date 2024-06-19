@@ -1,5 +1,25 @@
 let gameSpeed = 1
 
+// dogs.winnie.favoriteToys[2] = 'Sock'
+const dogs = {
+    eddie: {
+        name: 'Eddie',
+        favoriteToys: [
+            'Ball',
+            'Bone',
+            'Frisbe'
+        ]
+    },
+    winnie: {
+        name: 'Winnie',
+        favoriteToys: [
+            'Annie',
+            'Ball',
+            'Sock'
+        ]
+    }
+}
+
 setInterval(() => {
     const cloud = document.createElement('img')
     cloud.id = 'cloud'
@@ -33,6 +53,18 @@ const player = {
     sliding: false,
     alive: true,
     points: 0,
+    currentTexture: undefined,
+}
+
+function changePlayerTexture(src, size) {
+    if(player.currentTexture !== src) {
+        playerD.src = src
+        player.currentTexture = src
+        playerD.style.width = size[0]+'px'
+        playerD.style.height = size[1]+'px'
+
+        console.log('player texture changed!')
+    }
 }
 
 const playerD = doge('breadGameBread')
@@ -54,11 +86,11 @@ setInterval(() => {
 
     if(player.alive) {
         if(player.grav < -4 && player.sliding) {
-            playerD.src = 'media/breadGame/breadSlideFall2.png'
+            changePlayerTexture('media/breadGame/breadSlideFall2.png', [64, 32])
         } else if(player.grav < -2 && player.sliding) {
-            playerD.src = 'media/breadGame/breadSlideFall.png'
+            changePlayerTexture('media/breadGame/breadSlideFall.png', [64, 32])
         } else if(player.sliding) {
-            playerD.src = 'media/breadGame/breadSlide.png'
+            changePlayerTexture('media/breadGame/breadSlide.png', [64, 32])
         }
 
         doge('breadGamePoints').innerText = player.points.toString().padStart(8, 0)
@@ -85,9 +117,9 @@ setInterval(() => {
             player.pos += 10
             player.grav = 4
     
-            doge('breadGameBread').src = 'media/breadGame/breadDead.png'
-            doge('breadGameBread').style.width = '64px'
-            doge('breadGameBread').style.height = '32px'        }
+            changePlayerTexture('media/breadGame/breadDead.png', [64, 32])
+  
+        }
     })
 
     //floor movement
@@ -110,9 +142,7 @@ document.addEventListener('keydown', ev => {
             player.pos += 10
             player.grav += 3
     
-            doge('breadGameBread').src = 'media/breadGame/breadSlide.png'
-            doge('breadGameBread').style.width = '64px'
-            doge('breadGameBread').style.height = '32px'
+            changePlayerTexture('media/breadGame/breadSlide.png', [64, 32])
         }
     }
 })
@@ -123,9 +153,7 @@ document.addEventListener('keyup', ev => {
             player.sliding = false
             playerD.style.translate = '0 0'
     
-            doge('breadGameBread').src = 'media/breadGame/bread.gif'
-            doge('breadGameBread').style.width = '32px'
-            doge('breadGameBread').style.height = '64px'
+            changePlayerTexture('media/breadGame/bread.gif', [32, 64])
         }
     }
 })
@@ -192,7 +220,7 @@ function start() {
     
         doge('breadGameBread').style.width = '32px'
         doge('breadGameBread').style.height = '64px'
-        playerD.src = 'media/breadGame/bread.gif'
+        changePlayerTexture('media/breadGame/bread.gif', [32, 64])
     
         doge('breadGameOverlay').style.pointerEvents = 'none'
         doge('breadGameOverlay').style.scale = 0
