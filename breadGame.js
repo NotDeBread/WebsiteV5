@@ -104,7 +104,7 @@ document.addEventListener('keydown', ev => {
             player.grav = 7
             player.pos = 1
         } 
-        if(ev.key.toLowerCase() === 's' && !player.sliding && player.pos < 100 || ev.key.toLowerCase() === 'arrowdown' && !player.sliding && player.pos < 100) {
+        if(['s', 'arrowdown'].includes(ev.key.toLowerCase()) && !player.sliding && player.pos < 100) {
             player.sliding = true
             playerD.style.translate = '-50% 0'
             player.pos += 10
@@ -119,7 +119,7 @@ document.addEventListener('keydown', ev => {
 
 document.addEventListener('keyup', ev => {
     if(player.alive) {
-        if(ev.key.toLowerCase() === 's' || ev.key.toLowerCase() === 'arrowdown') {
+        if(['s', 'arrowdown'].includes(ev.key.toLowerCase())) {
             player.sliding = false
             playerD.style.translate = '0 0'
     

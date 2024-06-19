@@ -283,57 +283,58 @@ function guyClick() {
     })
 
     if(doge('guyCounter').innerText === '10') {
-        DeBread.playSound('media/explosion.mp3', 0.05)
-
-        const button = document.createElement('button')
-        button.innerText = 'Bread Game'
-        button.style.position = 'absolute'
-        button.style.left = '75px'
-        button.style.top = '75px'
-        button.style.zIndex = '5'
-        setTimeout(() => {
-            document.body.append(button)
-        }, 10);
-
-        button.onmouseenter = () => {
-            if(!contextMenuOpen) {
-                const rect = button.getBoundingClientRect()
-                mouseTarget = () => {return [rect.left + button.offsetWidth / 2, rect.top + button.offsetHeight / 2]}
-                cursor.style.borderRadius = '0'
-                cursor.style.width = button.offsetWidth + 'px'
-                cursor.style.height = button.offsetHeight + 'px'
-                cursorHovering = button
-            }
-        }
-        button.onmouseleave = () => {
-            if(!contextMenuOpen) {
-                mouseTarget = () => {return [mouse[0], mouse[1]]}
-                cursor.style.borderRadius = '50%'
-                cursor.style.width = '15px'
-                cursor.style.height = '15px'
-                cursorHovering = undefined
-            }
-        }
-        button.onclick = () => {
-            doge('breadGameContainer').style.pointerEvents = 'unset'
-            doge('breadGameContainer').style.opacity = 1
-
-            doge('breadGameOverlay').style.pointerEvents = 'unset'
-            doge('breadGameOverlay').style.scale = 1
-        
-        }
-
-        const explosion = document.createElement('img')
+        const explosion = new Image()
+        explosion.src = 'media/explosion.gif'
         explosion.style.position = 'absolute'
         explosion.style.left = '25px'
         explosion.style.top = '0'
         explosion.style.zIndex = '6'
-        explosion.src = 'media/explosion.gif'
         document.body.append(explosion)
 
-        setTimeout(() => {
-            explosion.remove()
-        }, 750);
+        explosion.onload = () => {
+            setTimeout(() => {
+                explosion.remove()
+            }, 750);
+    
+            DeBread.playSound('media/explosion.mp3', 0.05)
+    
+            const button = document.createElement('button')
+            button.innerText = 'Bread Game'
+            button.style.position = 'absolute'
+            button.style.left = '75px'
+            button.style.top = '75px'
+            button.style.zIndex = '5'
+            setTimeout(() => {
+                document.body.append(button)
+            }, 10);
+    
+            button.onmouseenter = () => {
+                if(!contextMenuOpen) {
+                    const rect = button.getBoundingClientRect()
+                    mouseTarget = () => {return [rect.left + button.offsetWidth / 2, rect.top + button.offsetHeight / 2]}
+                    cursor.style.borderRadius = '0'
+                    cursor.style.width = button.offsetWidth + 'px'
+                    cursor.style.height = button.offsetHeight + 'px'
+                    cursorHovering = button
+                }
+            }
+            button.onmouseleave = () => {
+                if(!contextMenuOpen) {
+                    mouseTarget = () => {return [mouse[0], mouse[1]]}
+                    cursor.style.borderRadius = '50%'
+                    cursor.style.width = '15px'
+                    cursor.style.height = '15px'
+                    cursorHovering = undefined
+                }
+            }
+            button.onclick = () => {
+                doge('breadGameContainer').style.pointerEvents = 'unset'
+                doge('breadGameContainer').style.opacity = 1
+    
+                doge('breadGameOverlay').style.pointerEvents = 'unset'
+                doge('breadGameOverlay').style.scale = 1
+            }
+        }
 
     }
 }
