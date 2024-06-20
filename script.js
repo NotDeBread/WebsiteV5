@@ -83,6 +83,21 @@ const artTitles = {
 
 const textures = [
     'guy.png',
+    'breadGame/bg.png',
+    'breadGame/bread.gif',
+    'breadGame/breadDead.png',
+    'breadGame/breadSlide.png',
+    'breadGame/breadSlideFall.png',
+    'breadGame/breadSlideFall2.png',
+    'breadGame/cloud0.png',
+    'breadGame/cloud1.png',
+    'breadGame/cloud2.png',
+    'breadGame/cloud3.png',
+    'breadGame/cloud4.png',
+    'breadGame/cloud5.png',
+    'breadGame/floor.png',
+    'breadGame/obstacleA0.png',
+    'breadGame/obstacleF0.png',
 ]
 
 for(const group in art) {
@@ -210,6 +225,7 @@ function closeMediaView() {
 
 
 let allTexturesLoaded = false
+const imageCache = {}
 
 function loadTexures(path) {
     let loaded = 0
@@ -218,6 +234,7 @@ function loadTexures(path) {
         const img = new Image()
         img.onload = () => {
             loaded++
+            imageCache[img.src] = img
 
             doge('texturesLoaded').innerText = `${loaded}/${total}`
             doge('loadingBar').style.width = (loaded / total) * 100 + '%'
@@ -238,6 +255,14 @@ function loadTexures(path) {
     }
 }
 loadTexures(textures)
+
+function getTexture(url) {
+    for(const img in imageCache) { 
+        if(img.endsWith(url)) {
+            return imageCache[img]
+        }
+    }
+}
 
 const videos = [
     'headerBG'

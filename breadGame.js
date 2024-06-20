@@ -1,25 +1,5 @@
 let gameSpeed = 1
 
-// dogs.winnie.favoriteToys[2] = 'Sock'
-const dogs = {
-    eddie: {
-        name: 'Eddie',
-        favoriteToys: [
-            'Ball',
-            'Bone',
-            'Frisbe'
-        ]
-    },
-    winnie: {
-        name: 'Winnie',
-        favoriteToys: [
-            'Annie',
-            'Ball',
-            'Sock'
-        ]
-    }
-}
-
 setInterval(() => {
     const cloud = document.createElement('img')
     cloud.id = 'cloud'
@@ -58,14 +38,24 @@ const player = {
 
 function changePlayerTexture(src, size) {
     if(player.currentTexture !== src) {
-        playerD.src = src
+        if(doge('breadGameBreadTexture'))  {
+            doge('breadGameBreadTexture').remove()
+        }
+
+        const img = getTexture(src)
+        img.id = 'breadGameBreadTexture'
+        playerD.append(img)
+
         player.currentTexture = src
-        playerD.style.width = size[0]+'px'
-        playerD.style.height = size[1]+'px'
+
+        doge('breadGameBread').style.width = size[0]+'px'
+        doge('breadGameBread').style.height = size[1]+'px'
+        doge('breadGameBreadTexture').style.width = size[0]+'px'
+        doge('breadGameBreadTexture').style.height = size[1]+'px'
 
         console.log('player texture changed!')
     }
-}
+} 
 
 const playerD = doge('breadGameBread')
 let floorPos = 0
@@ -217,9 +207,8 @@ function start() {
         gameActive = true
         player.sliding = false
         player.points = 0
-    
-        doge('breadGameBread').style.width = '32px'
-        doge('breadGameBread').style.height = '64px'
+
+        doge('breadGameBread').style.opacity = 1
         changePlayerTexture('media/breadGame/bread.gif', [32, 64])
     
         doge('breadGameOverlay').style.pointerEvents = 'none'
