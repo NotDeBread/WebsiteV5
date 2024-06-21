@@ -423,8 +423,20 @@ button {
   position: relative;
   outline: 2px solid white;
   width: 100%;
-  overflow: hidden;
   background-color: black;
+}
+
+.gameTag {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: black;
+  font-weight: 700;
+  background-color: cyan;
+  outline: 2px solid rgb(0, 200, 200);
+  z-index: 3;
+  padding: 2px 5px;
+  border-radius: 10px;
 }
 
 .gameInfo {
@@ -540,6 +552,15 @@ button {
   .mobileIncompatible {
     display: none;
   }
+}
+
+#footerText {
+  position: fixed;
+  bottom: 10px;
+  width: 100dvw;
+  text-align: center;
+  opacity: 0.25;
+  font-size: 0.75em;
 }
 
 #version {

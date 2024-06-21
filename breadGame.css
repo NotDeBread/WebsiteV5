@@ -44,7 +44,7 @@
 
 #breadGame {
     width: 100dvw;
-    height: 500px;
+    height: 400px;
     overflow-x: hidden;
     transition: scale cubic-bezier(.5,0,.5,1) 1s, translate cubic-bezier(.5,0,.5,1) 1s;
 }

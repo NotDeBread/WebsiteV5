@@ -358,6 +358,9 @@ function guyClick() {
     
                 doge('breadGameOverlay').style.pointerEvents = 'unset'
                 doge('breadGameOverlay').style.scale = 1
+
+                document.body.style.maxHeight = '100dvh'
+                document.body.style.overflow = 'hidden'
             }
         }
 

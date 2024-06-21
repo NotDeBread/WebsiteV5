@@ -72,7 +72,11 @@ setInterval(() => {
     } else {
         player.pos = 0
     }
-    if(player.pos === 0) {player.grav = 0}
+    if(player.pos === 0) {
+        DeBread.shake(doge('breadGame'),10,0,player.grav / 5,100)
+        console.log('e')
+        player.grav = 0
+    }
 
     if(player.alive) {
         if(player.grav < -4 && player.sliding) {
@@ -116,7 +120,7 @@ setInterval(() => {
     if(gameActive) {
         floorPos -= 3.5 * gameSpeed
         doge('breadGameFloor').style.backgroundPosition = `${floorPos}px 0`
-        doge('breadGameBG').style.backgroundPosition = `${floorPos / 2}px 0`
+        doge('breadGameBG').style.backgroundPosition = `${floorPos / 4}px 0`
     }
 }, 10);
 
@@ -230,4 +234,7 @@ function closeBG() {
 
     doge('breadGameDeath').style.pointerEvents = 'none'
     doge('breadGameDeath').style.opacity = 0
+
+    document.body.style.maxHeight = 'unset'
+    document.body.style.overflow = 'unset'
 }
