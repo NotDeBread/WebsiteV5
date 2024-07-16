@@ -74,7 +74,6 @@ setInterval(() => {
     }
     if(player.pos === 0) {
         DeBread.shake(doge('breadGame'),10,0,player.grav / 5,100)
-        console.log('e')
         player.grav = 0
     }
 

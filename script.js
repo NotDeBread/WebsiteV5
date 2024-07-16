@@ -1,3 +1,15 @@
+const titleText = 'DeBread\'s Space'
+let i = 0
+for(const char in titleText) {
+    const div = document.createElement('div')
+    div.innerText = titleText[char]
+    div.style.animation = `titleChar 3s ease-in-out -${i * 100}ms infinite forwards`
+    if(titleText[char] === ' ') div.style.width = '10px'
+    doge('titleTextContainer').append(div)
+
+    i++
+}
+
 const art = {
     goober: [
         {
@@ -7,6 +19,10 @@ const art = {
         {
             url: 'Nyan.png',
             date: 'May 16th, 2024'
+        },
+        {
+            url: 'AntiAliasing.png',
+            date: 'June 21st, 2024'
         }
     ],
     misc: [
