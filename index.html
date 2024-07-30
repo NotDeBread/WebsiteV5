@@ -75,17 +75,17 @@
 
     <div id="header">
         <div id="headerText">
-            <span style="font-size: 1.5em;">Welcome to</span><br>
-            <em style="font-size: 3em; font-weight: 900;" id="titleTextContainer"></em><br>
-            <span style="font-size: 1.5em; color: grey;">I make stuff</span><br>
+            <span style="font-size: 1.5em;" class="chunk">Welcome to</span><br>
+            <em style="font-size: 3em; font-weight: 900;" id="titleTextContainer" class="chunk"></em><br>
+            <span style="font-size: 1.5em; color: grey;" class="chunk">I make stuff</span><br>
         </div>
         <div id="headerVideoContainer">
-            <video id="headerBG" autoplay loop muted>
+            <video id="headerBG" autoplay loop muted tabindex="-1">
                 <source src="media/bg.mp4" type="video/mp4">
             </video>
         </div>
         <span id="guyCounter">0</span>
-        <img src="media/guy.png" id="guy" ignoreCursor="true" onclick="guyClick()">
+        <img src="media/guy.png" id="guy" ignoreCursor="true" onclick="guyClick()" class="chunk">
     </div>
 
     <div id="main">
@@ -185,7 +185,7 @@
         </div>
         <div id="container1">
             <div class="contentBox" style="width: 350px; max-width: 350px;">
-                <span style="font-size: 1.25em; font-weight: 700">News</span><br>
+                <span style="font-size: 1.25em; font-weight: 700; margin-bottom: 50px;">News</span><br>
                 <div id="newsContainer">
                     <div class="news">
                         <span ignoreCursor="true">DeBread.space v0.02 released</span>
@@ -209,15 +209,42 @@
         </div>
     </div>
 
+    <div id="toolboxBox" style="display: none;">
+        <div class="screwGroup">
+            <img src="media/tools/screw.png" class="screw">
+            <img src="media/tools/screw.png" class="screw">
+        </div>
+        <div class="screwGroup">
+            <img src="media/tools/screw.png" class="screw">
+            <img src="media/tools/screw.png" class="screw">
+        </div>
+    </div>
+
+    <div id="toolboxContainer">
+        <div id="toolboxTab">Toolbox</div>
+        <div id="toolbox">
+            <button>
+                <img src="media/tools/square.png" ignoreCursor="true">
+            </button>
+            <button>
+                <img src="media/tools/pencil.png" ignoreCursor="true">
+            </button>
+            <button>
+                <img src="media/tools/magnet.png" ignoreCursor="true">
+            </button>
+        </div>
+    </div>
+
     <span id="footerText">Made with not linktree but my brain instead</span>
 
-    <span id="version">v0.02.9</span>
+    <span id="version">v0.02.10</span>
 
 
     <script src="DeBread.js"></script>
     <script src="cursor.js"></script>
     <script src="script.js"></script>
     <script src="breadGame.js"></script>
+    <script src="toolbox.js"></script>
 </body>
 
 </html>

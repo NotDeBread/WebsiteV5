@@ -38,7 +38,7 @@ document.addEventListener('mouseup', () => {cursor.style.scale = 1})
 document.querySelectorAll('span, em').forEach(text => {
     if(!text.getAttribute('ignoreCursor')) {
         text.onmouseenter = () => {
-            if(!contextMenuOpen) {
+            if(!contextMenuOpen && !selectedTool) {
                 mouseTarget = () => {return [mouse[0], text.getBoundingClientRect().top + text.offsetHeight / 2]}
                 cursor.style.height = text.offsetHeight + 'px'
                 cursor.style.width = '5px'
@@ -47,7 +47,7 @@ document.querySelectorAll('span, em').forEach(text => {
             }
         }
         text.onmouseleave = () => {
-            if(!contextMenuOpen) {
+            if(!contextMenuOpen && !selectedTool) {
                 mouseTarget = () => {return [mouse[0], mouse[1]]}
                 cursor.style.height = '15px'
                 cursor.style.width = '15px'
@@ -60,7 +60,7 @@ document.querySelectorAll('span, em').forEach(text => {
 
 document.querySelectorAll('button').forEach(button => {
     button.onmouseenter = () => {
-        if(!contextMenuOpen) {
+        if(!contextMenuOpen && !selectedTool) {
             const rect = button.getBoundingClientRect()
             mouseTarget = () => {return [rect.left + button.offsetWidth / 2, rect.top + button.offsetHeight / 2]}
             cursor.style.borderRadius = '0'
@@ -70,7 +70,7 @@ document.querySelectorAll('button').forEach(button => {
         }
     }
     button.onmouseleave = () => {
-        if(!contextMenuOpen) {
+        if(!contextMenuOpen && !selectedTool) {
             mouseTarget = () => {return [mouse[0], mouse[1]]}
             cursor.style.borderRadius = '50%'
             cursor.style.width = '15px'
@@ -83,7 +83,7 @@ document.querySelectorAll('button').forEach(button => {
 document.querySelectorAll('img').forEach(img => {
     if(!img.getAttribute('ignoreCursor')) {
         img.onmouseenter = () => {
-            if(!contextMenuOpen && !img.getAttribute('ignore')) {
+            if(!contextMenuOpen && !img.getAttribute('ignore') && !selectedTool) {
                 const rect = img.getBoundingClientRect()
                 mouseTarget = () => {return [rect.left + img.offsetWidth / 2, rect.top + img.offsetHeight / 2]}
                 cursor.style.borderRadius = '0'
@@ -95,7 +95,7 @@ document.querySelectorAll('img').forEach(img => {
             }
         }
         img.onmouseleave = () => {
-            if(!contextMenuOpen && !img.getAttribute('ignore')) {
+            if(!contextMenuOpen && !img.getAttribute('ignore') && !selectedTool) {
                 mouseTarget = () => {return [mouse[0], mouse[1]]}
                 cursor.style.borderRadius = '50%'
                 cursor.style.width = '15px'
@@ -110,7 +110,7 @@ document.querySelectorAll('img').forEach(img => {
 
 document.querySelectorAll('.game').forEach(game => {
     game.onmouseenter = () => {
-        if(!contextMenuOpen && !game.getAttribute('ignore')) {
+        if(!contextMenuOpen && !game.getAttribute('ignore') && !selectedTool) {
             const rect = game.getBoundingClientRect()
             mouseTarget = () => {return [rect.left + game.offsetWidth / 2, rect.top + game.offsetHeight / 2]}
             cursor.style.borderRadius = '0'
@@ -122,7 +122,7 @@ document.querySelectorAll('.game').forEach(game => {
         }
     }
     game.onmouseleave = () => {
-        if(!contextMenuOpen && !game.getAttribute('ignore')) {
+        if(!contextMenuOpen && !game.getAttribute('ignore') && !selectedTool) {
             mouseTarget = () => {return [mouse[0], mouse[1]]}
             cursor.style.borderRadius = '50%'
             cursor.style.width = '15px'
@@ -133,7 +133,7 @@ document.querySelectorAll('.game').forEach(game => {
         }
     }
     game.onclick = () => {
-        if(game.getAttribute('game')) {
+        if(game.getAttribute('game') && !selectedTool) {
             window.open(`https://debread.space/${game.getAttribute('game')}`, '_blank')
         }
     }
@@ -142,7 +142,7 @@ document.querySelectorAll('.game').forEach(game => {
 document.querySelectorAll('a').forEach(link => {
     link.target = '_blank'
     link.onmouseenter = () => {
-        if(!contextMenuOpen) {
+        if(!contextMenuOpen && !selectedTool) {
             const rect = link.getBoundingClientRect()
             mouseTarget = () => {return [rect.left + link.offsetWidth / 2, rect.top + link.offsetHeight / 2]}
             cursor.style.borderRadius = '0'
@@ -155,7 +155,7 @@ document.querySelectorAll('a').forEach(link => {
         }
     }
     link.onmouseleave = () => {
-        if(!contextMenuOpen) {
+        if(!contextMenuOpen && !selectedTool) {
             mouseTarget = () => {return [mouse[0], mouse[1]]}
             cursor.style.borderRadius = '50%'
             cursor.style.width = '15px'
@@ -170,7 +170,7 @@ document.querySelectorAll('a').forEach(link => {
 
 let contextMenuOpen = false
 document.addEventListener('contextmenu', ev => {
-    if(customContextMenu) {
+    if(customContextMenu && !selectedTool) {
         ev.preventDefault()
         cursor.innerHTML = ''
         if(contextMenuOpen) {

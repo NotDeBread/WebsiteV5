@@ -12,6 +12,7 @@ body {
   cursor: none;
   overflow: hidden;
   min-height: 100dvh;
+  scrollbar-width: none;
 }
 
 a {
@@ -43,6 +44,10 @@ button {
   padding: 5px;
   cursor: none;
   position: relative;
+}
+
+video {
+  user-select: none;
 }
 
 #loadingScreen {
@@ -181,6 +186,7 @@ button {
   background-color: black;
   outline: 2px solid;
   position: relative;
+  scrollbar-width: none;
   animation: galleryClose 250ms ease-in 1 forwards;
 }
 
@@ -568,6 +574,66 @@ button {
   .mobileIncompatible {
     display: none;
   }
+}
+
+#toolboxBox {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  background-image: url(media/tools/metalThing.png);
+  width: 64px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.screwGroup {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+#toolboxContainer {
+  width: 100dvw;
+  position: absolute;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  z-index: 999;
+}
+
+#toolboxTab {
+  padding: 5px;
+  outline: 2px solid white;
+  background-color: black;
+}
+
+#toolbox {
+  width: calc(100% - 20px);
+  height: 180px;
+  padding: 10px;
+  border-top: 2px solid white;
+  background-color: black;
+  display: flex;
+  gap: 10px;
+}
+
+#toolbox button {
+  width: 90px;
+  height: 90px;
+  outline: 2px solid white;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#toolbox button img {
+  width: 64px;
+  image-rendering: pixelated;
 }
 
 #footerText {

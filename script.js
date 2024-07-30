@@ -128,7 +128,7 @@ for(const group in art) {
 const gallery = doge('gallery')
 const innerGallery = doge('innerGallery')
 const galleryContainer = doge('galleryContainer')
-function openGallery(group) {
+function openGallery(group) { if(!selectedTool) {
     innerGallery.innerHTML = ''
     closeMediaView()
     gallery.style.animation = 'galleryOpen 250ms cubic-bezier(0,1,.5,1) 1 forwards'
@@ -214,7 +214,7 @@ function openGallery(group) {
             innerGallery.append(folder)
         }
     }
-}
+}}
 
 function closeGallery() {
     gallery.style.animation = 'galleryClose 250ms ease-in 1 forwards'
@@ -350,7 +350,7 @@ function guyClick() {
             }, 10);
     
             button.onmouseenter = () => {
-                if(!contextMenuOpen) {
+                if(!contextMenuOpen && !selectedTool) {
                     const rect = button.getBoundingClientRect()
                     mouseTarget = () => {return [rect.left + button.offsetWidth / 2, rect.top + button.offsetHeight / 2]}
                     cursor.style.borderRadius = '0'
@@ -360,7 +360,7 @@ function guyClick() {
                 }
             }
             button.onmouseleave = () => {
-                if(!contextMenuOpen) {
+                if(!contextMenuOpen && !selectedTool) {
                     mouseTarget = () => {return [mouse[0], mouse[1]]}
                     cursor.style.borderRadius = '50%'
                     cursor.style.width = '15px'
@@ -369,14 +369,16 @@ function guyClick() {
                 }
             }
             button.onclick = () => {
-                doge('breadGameContainer').style.pointerEvents = 'unset'
-                doge('breadGameContainer').style.opacity = 1
+                if(!selectedTool) {
+                    doge('breadGameContainer').style.pointerEvents = 'unset'
+                    doge('breadGameContainer').style.opacity = 1
+        
+                    doge('breadGameOverlay').style.pointerEvents = 'unset'
+                    doge('breadGameOverlay').style.scale = 1
     
-                doge('breadGameOverlay').style.pointerEvents = 'unset'
-                doge('breadGameOverlay').style.scale = 1
-
-                document.body.style.maxHeight = '100dvh'
-                document.body.style.overflow = 'hidden'
+                    document.body.style.maxHeight = '100dvh'
+                    document.body.style.overflow = 'hidden'
+                }
             }
         }
 
@@ -384,13 +386,17 @@ function guyClick() {
 }
 
 doge('guy').onmouseenter = () => {
-    cursor.style.width = 0
-    cursor.style.height = 0
-    realCursor.style.opacity = 0
+    if(!selectedTool) {
+        cursor.style.width = 0
+        cursor.style.height = 0
+        realCursor.style.opacity = 0
+    }
 }
 
 doge('guy').onmouseleave = () => {
-    cursor.style.width = '15px'
-    cursor.style.height = '15px'
-    realCursor.style.opacity = 1
+    if(!selectedTool) {
+        cursor.style.width = '15px'
+        cursor.style.height = '15px'
+        realCursor.style.opacity = 1
+    }
 }
