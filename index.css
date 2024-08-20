@@ -504,6 +504,7 @@ video {
   background-color: white;
   position: absolute;
   pointer-events: none;
+  z-index: 999999;
   animation: particleAnim var(--particleLifespan) var(--particleTimingFunction) 1 forwards;
 }
 

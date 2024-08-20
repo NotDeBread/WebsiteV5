@@ -52,8 +52,6 @@ function changePlayerTexture(src, size) {
         doge('breadGameBread').style.height = size[1]+'px'
         doge('breadGameBreadTexture').style.width = size[0]+'px'
         doge('breadGameBreadTexture').style.height = size[1]+'px'
-
-        console.log('player texture changed!')
     }
 } 
 
@@ -185,9 +183,7 @@ function createObstacle(speed) {
 
 let gameActive = false
 function start() {
-    if(!gameActive) {
-        console.log('game started')
-    
+    if(!gameActive) {    
         doge('breadGameOverlay').blur()
     
         doge('breadGame').querySelectorAll('#obst').forEach(obstacle => {

@@ -1,4 +1,6 @@
 const soundPool = {}
+let audios = 0
+let audioLimit = 25
 const intervals = {}
 
 const DeBread = {
@@ -194,20 +196,34 @@ const DeBread = {
     * @param speed The speed to play the sound at.
     */
     playSound(sound, volume = 1, speed = 1) {
-        if(!soundPool[sound]) {
-            soundPool[sound] = new Audio(sound)
-        }
-        const audio = soundPool[sound]
-        audio.volume = volume
-        audio.playbackRate = speed
+        if(audios < audioLimit) {
+            if(!soundPool[sound]) {
+                soundPool[sound] = new Audio(sound)
+            }
+            const audio = soundPool[sound]
+            audio.volume = volume
+            audio.playbackRate = speed
 
-        if(audio.paused) {
-            audio.play()
-        } else{
-            const audioClone = audio.cloneNode()
-            audioClone.volume = volume
-            audioClone.playbackRate = speed
-            audioClone.play()
+            if(audio.paused) {
+                audio.play()
+                audios++
+                doge('underAudioCounter').innerText = `Sounds: ${audios}/${audioLimit}`
+                doge('underAudioCounter').style.color = `hsl(0deg, 100%, ${100 - ((audios - (audioLimit / 2)) / audioLimit) * 100}%)`
+            } else{
+                const audioClone = audio.cloneNode()
+                audioClone.volume = volume
+                audioClone.playbackRate = speed
+                audioClone.play()
+                audios++
+                doge('underAudioCounter').innerText = `Sounds: ${audios}/${audioLimit}`
+                doge('underAudioCounter').style.color = `hsl(0deg, 100%, ${100 - ((audios - (audioLimit / 2)) / audioLimit) * 100}%)`
+            }
+
+            setTimeout(() => {
+                audios--
+                doge('underAudioCounter').innerText = `Sounds: ${audios}/${audioLimit}`
+                doge('underAudioCounter').style.color = `hsl(0deg, 100%, ${100 - ((audios - (audioLimit / 2)) / audioLimit) * 100}%)`
+            }, audio.duration * 1000);
         }
     },
 

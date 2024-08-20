@@ -236,7 +236,6 @@ function openMediaView(group, img) {
 function closeMediaView() {
     mediaView.style.animation = 'galleryClose 250ms ease-in 1 forwards'
     mediaView.style.pointerEvents = 'none'
-
 }
 
 
@@ -322,6 +321,10 @@ function guyClick() {
     requestAnimationFrame(() => {
         doge('guyCounter').style.animation = 'pulse 500ms cubic-bezier(0,1,.5,1) 1 forwards'
     })
+
+    if(doge('guyCounter').innerText === '1') {
+        // startFight()
+    }
 
     if(doge('guyCounter').innerText === '10') {
         const explosion = new Image()

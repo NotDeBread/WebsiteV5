@@ -25,3 +25,6 @@
 [submodule "Wishlist"]
 	path = Wishlist
 	url = https://github.com/NotDeBread/Wishlist.git
+[submodule "GooberShooter"]
+	path = GooberShooter
+	url = https://github.com/NotDeBread/GooberShooter.git

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="breadGame.css">
+    <link rel="stylesheet" href="underBread.css">
     <title>DeBread's Space</title>
 </head>
 
@@ -23,6 +24,50 @@
     <span id="cursorText"></span>
     <div id="cursor"></div>
     <div id="realCursor"></div>
+
+    <img id="soul" src="media/underBread/img/soul.png">
+
+    <div id="underBreadGameOver">
+        <div id="underBreadGameOverText">
+            <span>GAME</span>
+            <span>OVER</span>
+        </div>
+        <span>Press [Z] to restart</span>
+        <span>Press [X] to exit</span>
+    </div>
+    <div id="underBreadContainer">
+        <div id="underEnemyContainer">
+            <img src="media/underBread/img/tempEnemy.png" width="100%">
+        </div>
+        <div id="underEnemyBarContainer">
+            <div id="underEnemyBar">
+                <div id="underInnerEnemyBar">
+
+                </div>
+            </div>
+        </div>
+        <span id="underInfo" style="width: 600px;"></span>
+        <div id="underPlayArea">
+        </div>
+        <div id="underStats">
+            <span>Player</span>
+            <span>Lvl 4</span>
+            <div style="display: flex; gap: 5px; margin-left: 50px;">
+                <span>HP</span>
+                <div id="underHealthBar">
+                    <div id="underInnerHealthBar"></div>
+                </div>
+                <span id="underHP">20 / 20</span>
+            </div>
+        </div>
+        <div id="underButtons">
+            <img src="media/underBread/img/fightS.png" id="underButton0">
+            <img src="media/underBread/img/act.png" id="underButton1">
+            <img src="media/underBread/img/item.png" id="underButton2">
+            <img src="media/underBread/img/mercy.png" id="underButton3">
+        </div>
+        <span id="underAudioCounter">Sounds: -</span>
+    </div>
 
     <div id="breadGameContainer">
         <div id="breadGameOverlay">
@@ -120,10 +165,10 @@
                 <div class="contentBox" id="gameBox">
                     <span style="font-size: 1.25em; font-weight: 700">Games</span><br>
                     <div class="gameButtons">
-                        <div class="game">
+                        <div class="game" game="GooberShooter">
                             <div class="gameInfo">
                                 <span>Goober Shooter</span><br>
-                                <em>Coming Soon!</em>
+                                <em>Top-down shooter but awesome.</em>
                             </div>
                             <div class="gameBG" style="background-image: url(media/gameBGs/gooberShooter.png);"></div>
                         </div>
@@ -184,9 +229,16 @@
             </div>
         </div>
         <div id="container1">
-            <div class="contentBox" style="width: 350px; max-width: 350px;">
+            <div class="contentBox" style="width: 350px; max-width: 350px; height: 450px; overflow-y: scroll; scrollbar-width: thin;">
                 <span style="font-size: 1.25em; font-weight: 700; margin-bottom: 50px;">News</span><br>
                 <div id="newsContainer">
+                    <div class="news">
+                        <span ignoreCursor="true">Goober Shooter released</span>
+                        <span ignoreCursor="true">
+                            After six months Goober Shooter is finally released! You can play it <a href="/GooberShooter/">Here.</a>
+                        </span>
+                        <em>August 20th, 2024</em>
+                    </div>
                     <div class="news">
                         <span ignoreCursor="true">DeBread.space v0.02 released</span>
                         <span ignoreCursor="true">
@@ -237,7 +289,7 @@
 
     <span id="footerText">Made with not linktree but my brain instead</span>
 
-    <span id="version">v0.02.10b</span>
+    <span id="version">v0.02.11</span>
 
 
     <script src="DeBread.js"></script>
@@ -245,6 +297,7 @@
     <script src="script.js"></script>
     <script src="breadGame.js"></script>
     <script src="toolbox.js"></script>
+    <script src="underBread.js"></script>
 </body>
 
 </html>
