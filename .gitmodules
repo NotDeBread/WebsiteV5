@@ -28,3 +28,6 @@
 [submodule "GooberShooter"]
 	path = GooberShooter
 	url = https://github.com/NotDeBread/GooberShooter.git
+[submodule "NewWinnieAccumulator"]
+	path = NewWinnieAccumulator
+	url = https://github.com/NotDeBread/NewWinnieAccumulator.git
